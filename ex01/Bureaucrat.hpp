@@ -6,13 +6,14 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 12:04:14 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/08 18:56:03 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:38:01 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+#include "Form.hpp"
 #include <iostream>
 #include <exception>
 
@@ -34,6 +35,7 @@ public:
 	void		setGrade(const int grade);
 	void		incrementGrade(void);
 	void		decrementGrade(void);
+	void		signForm(Form doc);
 
 	class GradeTooLowException : public std::exception
 	{

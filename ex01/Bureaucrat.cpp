@@ -6,11 +6,12 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 12:09:34 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/08 20:27:00 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/08 20:27:14 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <limits>
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
@@ -52,7 +53,6 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& src) // _name is const so we
 	return (*this);
 }
 
-
 std::string	Bureaucrat::getName(void) const
 {
 	return (this->_name);
@@ -85,6 +85,21 @@ void		Bureaucrat::incrementGrade(void)
 	if (_grade -1 < 1)
 		throw Bureaucrat::GradeTooHighException();
 	_grade--;
+}
+
+void		Bureaucrat::signForm(Form doc)
+{
+	if (this->_grade <= doc.getSign())
+	{
+		std::cout << this->getName() << " signed the form " << doc.getName() << std::endl;
+		doc.beSigned(*this);
+	}
+	else 
+	{
+		std::cout << this->getName() << "couldn't sign the form " << doc.getName() 
+			<< " because it's mandatory to have grade " << doc.getSign() << " or higher" << std::endl;
+		doc.beSigned(*this);
+	}
 }
 
 const char* Bureaucrat::GradeTooLowException::what(void) const throw()
