@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:20:15 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/14 19:39:27 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:51:53 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@
 #include "AForm.hpp"
 #include <iostream>
 
-class RobotomyRequestForm
+class RobotomyRequestForm : public AForm
 {
 private:
 	const std::string _target;
 
 public:
-	RobotomyRequestForm();
+	// RobotomyRequestForm();
 	RobotomyRequestForm(const std::string& target);
-	RobotomyRequestForm(RobotomyRequestForm& copy);
+	// RobotomyRequestForm(RobotomyRequestForm& copy);
 	~RobotomyRequestForm();
 
 	RobotomyRequestForm& operator=(const RobotomyRequestForm& src);
 
-	// void		beSigned(const Bureaucrat& signer);
+	std::string getTarget(void) const;
 	void		execute(const Bureaucrat& executor) const;
 };
 

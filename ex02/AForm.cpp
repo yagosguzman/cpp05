@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:40:42 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/10 19:56:24 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:23:29 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ const char* AForm::GradeTooLowException::what(void) const throw()
 const char* AForm::GradeTooHighException::what(void) const throw()
 {
 	return ("The Bureaucrat's grade is too high to sign this form!");
+}
+
+const char* AForm::FormNotSignedException::what(void) const throw()
+{
+	return ("This Form is NOT SIGNED so you can't EXECUTE it.");
 }
 
 std::ostream& operator<<(std::ostream &out, const AForm &src)

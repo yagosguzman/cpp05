@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:18:48 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/14 19:51:04 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/14 22:01:40 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,37 @@ int main (void)
 	// Creation of forms
 	std::cout << "*** CREATING FORMS ***\n" << std::endl;
 	
+	AForm* test = NULL;
+
 	try
 	{
-		const AForm* test = new ShrubberyCreationForm;
+		test = new ShrubberyCreationForm;
 		std::cout << *test << std::endl;
 		Bureaucrat president("Pepe", 137);
-		test->execute(president);// NO FUNCIONA LA IMPLEMENTACION DEL NOMBRE DEL ARCHIVO
-		if (test->isSigned())
-			std::cout << "This is signed" << std::endl;
-		else
-			std::cout << "This is NOT signed" << std::endl;
-		delete test;
+		president.signForm(*test);
+		test->execute(president);
 	}
 	catch(const std::exception& e)
 	{
 		std::cout << e.what() << std::endl;
 	}
+	delete test;
 
+	AForm* test2 = NULL;
+
+		try
+	{
+		test2 = new RobotomyRequestForm("Lobotomia");
+		std::cout << *test2 << std::endl;
+		Bureaucrat president("Pipo", 45);
+		president.signForm(*test2);
+		test2->execute(president);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	delete test2;
 // 	// Trying to sign a form
 
 // 	std::cout << "\n*** TRYING TO SIGN FORMS ***\n" << std::endl;

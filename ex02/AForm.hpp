@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:12:54 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/14 19:33:48 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:18:11 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ public:
 	class GradeTooHighException : public std::exception
 	{
 	public:
+		virtual const char* what(void) const throw();
+	};
+
+	class FormNotSignedException : public std::exception
+	{
+	public: 
 		virtual const char* what(void) const throw();
 	};
 };

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 20:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/14 19:48:20 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:34:06 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 #include "AForm.hpp"
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery Creation Form", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery Creation Form", 145, 137), _target("untitled")
 {
-	std::cout << "ShrubberyCreationForm created" << std::endl;
+	std::cout << "Shrubbery Creation Form created" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("Shrubbery Creation Form", 145, 137), _target(target)
 {
-	std::cout << "ShrubberyCreationForm with target created" << std::endl;
+	std::cout << "Shrubbery Creation Form with target created" << std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << "ShrubberyCreationForm destroyed" << std::endl;
+	std::cout << "Shrubbery Creation Form destroyed" << std::endl;
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& src) // We can't reassign any const variables.
@@ -35,7 +35,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	if (this != &src)
 	{
 		this->setSign(src.isSigned());
-		std::cout << "Copy assignment operator called for form" << std::endl;
+		std::cout << "Copy assignment operator called for Shrubbery Creation Form" << std::endl;
 	}
 	else
 		std::cout << "WARNING!\nSelf-assignation detected!" << std::endl;
@@ -49,6 +49,8 @@ std::string	ShrubberyCreationForm::getTarget(void) const
 
 void		ShrubberyCreationForm::execute(Bureaucrat const& executor) const
 {
+	if (!this->isSigned())
+		throw AForm::FormNotSignedException();
 	if (executor.getGrade() > 137)
 		throw AForm::GradeTooLowException();
 	std::ofstream file;
