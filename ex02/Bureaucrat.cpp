@@ -6,12 +6,12 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 12:09:34 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/10 19:55:13 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:15:07 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <limits>
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
@@ -87,7 +87,7 @@ void		Bureaucrat::incrementGrade(void)
 	_grade--;
 }
 
-void		Bureaucrat::signForm(Form doc)
+void		Bureaucrat::signForm(AForm& doc)
 {
 	if (this->_grade <= doc.getSign())
 	{
@@ -102,10 +102,10 @@ void		Bureaucrat::signForm(Form doc)
 	}
 }
 
-void		Bureaucrat::executeForm(AForm const& form)
-{
+// void		Bureaucrat::executeForm(AForm const& form)
+// {
 
-}
+// }
 
 const char* Bureaucrat::GradeTooLowException::what(void) const throw()
 {

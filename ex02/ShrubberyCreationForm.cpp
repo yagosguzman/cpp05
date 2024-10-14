@@ -6,11 +6,12 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 20:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/11 18:36:46 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:48:20 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+#include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include <fstream>
 
@@ -41,25 +42,33 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return (*this);
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const& executor) const
+std::string	ShrubberyCreationForm::getTarget(void) const
 {
+	return (this->_target);
+}
+
+void		ShrubberyCreationForm::execute(Bureaucrat const& executor) const
+{
+	if (executor.getGrade() > 137)
+		throw AForm::GradeTooLowException();
 	std::ofstream file;
 
-		std::string name = _target + "_shrubbery";
+		std::string fullName = this->getTarget() + "_shrubbery";
+		const char* name = fullName.c_str();
 
 		file.open(name);
 		if (file.is_open())
 		{
 			file << "              ,@@@@@@@,\n";
 			file << "      ,,,.   ,@@@@@@/@@,  .oo8888o.\n";
-			file << "  ,&%%&%&&%,@@@@@/@@@@@@,8888\88/8o\n";
-			file << " ,%&\%&&%&&%,@@@\@@@/@@@88\88888/88'\n";
-			file << " %&&%&%&/%&&%@@\@@/ /@@@88888\88888'\n";
-			file << " %&&%/ %&%%&&@@\ V /@@' `88\8 `/88'\n";
-			file << "  `&%\ ` /%&'    |.|        \ '|8'\n";
+			file << "  ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n";
+			file << " ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n";
+			file << " %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n";
+			file << " %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n";
+			file << "  `&%\\ ` /%&'    |.|        \\ '|8'\n";
 			file << "      |o|        | |         | |\n";
-			file << "	   |.|        | |         | |\n";
-			file << "   \\/ ._\//_/__/  ,\_//__\\/.  \_//__/_" << std::endl;
+			file << "      |.|        | |         | |\n";
+			file << "   \\\\/ ._\\//_/__/ . \\_// __\\/ . \\_//__/_" << std::endl;
 		
 			file.close();
 		}

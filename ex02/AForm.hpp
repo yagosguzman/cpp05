@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:12:54 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/11 18:16:28 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:33:48 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ public:
 	AForm();
 	AForm(std::string name, int sign, int exec);
 	AForm(AForm& copy);
-	~AForm();
+	virtual ~AForm();
 
 	AForm& operator=(const AForm& src);
 
@@ -39,8 +39,8 @@ public:
 	int				getSign(void) const;
 	bool			isSigned(void) const;
 	void			setSign(bool);
-	virtual void	beSigned(const Bureaucrat& who) = 0;
-	virtual void	execute(const Bureaucrat& executor) = 0;
+	virtual void	beSigned(const Bureaucrat& who);
+	virtual void	execute(const Bureaucrat& executor) const = 0;
 
 	class GradeTooLowException : public std::exception
 	{

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 12:04:14 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/10 20:02:33 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:58:07 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ public:
 	void		setGrade(const int grade);
 	void		incrementGrade(void);
 	void		decrementGrade(void);
-	void		signForm(Form doc);
+	void		signForm(AForm& doc);
 	void		executeForm(AForm const& form);
 
 	class GradeTooLowException : public std::exception
