@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 20:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/14 21:34:06 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/16 21:55:14 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "AForm.hpp"
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery Creation Form", 145, 137), _target("untitled")
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery Creation Form", 145, 137), _target("default")
 {
 	std::cout << "Shrubbery Creation Form created" << std::endl;
 }
@@ -24,6 +24,12 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm(
 {
 	std::cout << "Shrubbery Creation Form with target created" << std::endl;
 }
+
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm& copy) : AForm(copy), _target(copy.getTarget())
+{
+	std::cout << "Copy constructor for Shrubbery Creation Form called" << std::endl;
+}
+
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
@@ -47,7 +53,7 @@ std::string	ShrubberyCreationForm::getTarget(void) const
 	return (this->_target);
 }
 
-void		ShrubberyCreationForm::execute(Bureaucrat const& executor) const
+void		ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
 	if (!this->isSigned())
 		throw AForm::FormNotSignedException();

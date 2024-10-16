@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 19:57:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/14 19:39:59 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/16 21:55:24 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ public:
 	ShrubberyCreationForm& operator=(const ShrubberyCreationForm& src);
 
 	std::string getTarget(void) const;
-	// void		beSigned(const Bureaucrat& signer);
 	void		execute(const Bureaucrat& executor) const;
 };
 

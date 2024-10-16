@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:18:48 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/14 22:01:40 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:53:08 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@ int main (void)
 	// Creation of forms
 	std::cout << "*** CREATING FORMS ***\n" << std::endl;
 	
-	AForm* test = NULL;
+	ShrubberyCreationForm* test = NULL;
+	ShrubberyCreationForm* test2 = NULL;
+
 
 	try
 	{
 		test = new ShrubberyCreationForm;
-		std::cout << *test << std::endl;
+		test2 = new ShrubberyCreationForm(*test);
+		std::cout << "TEST 1:" << *test << std::endl;
+		std::cout << "TEST 2:" << *test2 << std::endl;
 		Bureaucrat president("Pepe", 137);
 		president.signForm(*test);
 		test->execute(president);
@@ -37,22 +41,23 @@ int main (void)
 		std::cout << e.what() << std::endl;
 	}
 	delete test;
+	delete test2;
 
-	AForm* test2 = NULL;
+	AForm* test3 = NULL;
 
 		try
 	{
-		test2 = new RobotomyRequestForm("Lobotomia");
-		std::cout << *test2 << std::endl;
+		test3 = new RobotomyRequestForm("Lobotomia");
+		std::cout << *test3 << std::endl;
 		Bureaucrat president("Pipo", 45);
-		president.signForm(*test2);
-		test2->execute(president);
+		president.signForm(*test3);
+		test3->execute(president);
 	}
 	catch(const std::exception& e)
 	{
 		std::cout << e.what() << std::endl;
 	}
-	delete test2;
+	delete test3;
 // 	// Trying to sign a form
 
 // 	std::cout << "\n*** TRYING TO SIGN FORMS ***\n" << std::endl;

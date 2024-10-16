@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:40:42 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/14 21:23:29 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/16 20:05:05 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ const char* AForm::FormNotSignedException::what(void) const throw()
 std::ostream& operator<<(std::ostream &out, const AForm &src)
 {
 	if (src.isSigned())
-		out << src.getName() << " form is signed!\n - Required grade to sign: " << src.getSign()
+		out << src.getName() << " is signed!\n - Required grade to sign: " << src.getSign()
 			<< "\n - Required grade to execute: " << src.getExec() << std::endl;
 	else
-		out << src.getName() << " form is NOT signed!\n - Required grade to sign: " << src.getSign()
+		out << src.getName() << " is NOT signed!\n - Required grade to sign: " << src.getSign()
 			<< "\n - Required grade to execute: " << src.getExec() << std::endl;
 	return (out);
 }

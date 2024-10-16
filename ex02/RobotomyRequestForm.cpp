@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:21:42 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/14 22:02:47 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/16 21:36:09 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,19 @@
 #include <fstream>
 #include <cstdlib>
 
+RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy Request Form", 72, 45), _target("default")
+{
+	std::cout << "Default constructor for Robotomy Request Form called" << std::endl;
+}
+
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("Robotomy Request Form", 72, 45), _target(target)
 {
 	std::cout << "Robotomy Request Form created" << std::endl;
+}
+
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm& copy) : AForm(copy), _target(copy.getTarget())
+{
+	std::cout << "Copy constructor for Robotomy Request Form called" << std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
