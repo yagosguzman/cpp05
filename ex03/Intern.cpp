@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:27:23 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/21 21:12:21 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:05:19 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+
+typedef AForm* (*arrforms)(std::string);
 
 Intern::Intern()
 {
@@ -42,31 +44,34 @@ Intern& Intern::operator=(const Intern& src)
 	return (*this);
 }
 
+static AForm* makeShrubbery(std::string target)
+{
+	return (new ShrubberyCreationForm(target));
+}
+
+static AForm* makeRobotomy(std::string target)
+{
+	return (new RobotomyRequestForm(target));
+}
+
+static AForm* makePresPardon(std::string target)
+{
+	return (new PresidentialPardonForm(target));
+} 
+
 AForm* Intern::makeForm(std::string formType, std::string target)
 {
-		std::string arrform[3] = {"Shrubbery Creation", "Robotomy Request", "Presidential Pardon"};
-	try
+	arrforms ft_forms[3]= {makeShrubbery, makeRobotomy, makePresPardon};
+	std::string arrform[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+	for (int i = 0; i < 3; i++)
 	{
-		AForm* forms[3] = {new ShrubberyCreationForm(target), new RobotomyRequestForm(target), new PresidentialPardonForm(target)};
-		for (int i = 0; i < 3; i++)
+		if (arrform[i].compare(formType) == 0)
 		{
-			if (arrform[i].compare(formType) == 0)
-			{
-				AForm* retval = forms[i];
-				for (int j = 0; j < 3; j++)
-					if (i != j)
-						delete forms[j];
-				std::cout << "The intern has created a new " << arrform[i] << " form" << std::endl; 
-				return (retval);
-			}
+			AForm* retval = ft_forms[i](target);
+			std::cout << "The intern has created a new " << arrform[i] << " form" << std::endl; 
+			return (retval);
 		}
-		for (int i = 0; i < 3; i++)
-			delete forms[i];
-		throw; // EXCEPTION
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-		return (NULL);
-	}
+	std::cout << "The intern couldn't create the form you asked for" << std::endl;
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 18:10:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/21 19:35:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:25:43 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 # define INTERN_HPP
 
 #include <iostream>
+#include <map>
 #include "AForm.hpp"
 
 class Intern
 {
 private:
+	
 
 public:
 	Intern();
@@ -28,7 +30,6 @@ public:
 	Intern& operator=(const Intern& src);
 
 	AForm* makeForm(std::string formType, std::string target);
-
 };
 
 #endif
