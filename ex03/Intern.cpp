@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:27:23 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/22 19:05:19 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:45:35 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ Intern& Intern::operator=(const Intern& src)
 	return (*this);
 }
 
+static std::string lowercase(std::string str)
+{
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (str.at(i) >= 'A' && str.at(i) <= 'Z')
+			str.at(i) += 32;
+	}
+	return (str);
+}
+
 static AForm* makeShrubbery(std::string target)
 {
 	return (new ShrubberyCreationForm(target));
@@ -61,6 +71,7 @@ static AForm* makePresPardon(std::string target)
 
 AForm* Intern::makeForm(std::string formType, std::string target)
 {
+	formType = lowercase(formType);
 	arrforms ft_forms[3]= {makeShrubbery, makeRobotomy, makePresPardon};
 	std::string arrform[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	for (int i = 0; i < 3; i++)
