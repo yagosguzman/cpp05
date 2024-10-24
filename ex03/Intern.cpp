@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:27:23 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/10/22 19:45:35 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/10/24 19:25:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef AForm* (*arrforms)(std::string);
 
 Intern::Intern()
 {
-	std::cout << "New intern created and ready to do boring tasks" << std::endl;
+	std::cout << "New intern created. He's ready to do boring tasks" << std::endl;
 }
 
 Intern::Intern(Intern& copy)
@@ -44,16 +44,6 @@ Intern& Intern::operator=(const Intern& src)
 	return (*this);
 }
 
-static std::string lowercase(std::string str)
-{
-	for (int i = 0; i < str.length(); i++)
-	{
-		if (str.at(i) >= 'A' && str.at(i) <= 'Z')
-			str.at(i) += 32;
-	}
-	return (str);
-}
-
 static AForm* makeShrubbery(std::string target)
 {
 	return (new ShrubberyCreationForm(target));
@@ -71,7 +61,8 @@ static AForm* makePresPardon(std::string target)
 
 AForm* Intern::makeForm(std::string formType, std::string target)
 {
-	formType = lowercase(formType);
+	for (size_t i = 0; i < formType.length(); i++)
+		formType.at(i) = tolower(formType.at(i));
 	arrforms ft_forms[3]= {makeShrubbery, makeRobotomy, makePresPardon};
 	std::string arrform[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	for (int i = 0; i < 3; i++)
@@ -83,6 +74,6 @@ AForm* Intern::makeForm(std::string formType, std::string target)
 			return (retval);
 		}
 	}
-	std::cout << "The intern couldn't create the form you asked for" << std::endl;
+	std::cout << "The intern couldn't create the form " << formType << std::endl;
 	return (NULL);
 }
